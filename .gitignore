@@ -1,7 +1,13 @@
-# Mac
+# Mac (Utnyttig å ha i git - noe MacOS lager)
 .DS_Store
 
-# Environment
+# Environment (Inneholder api nøkler og password)
 .env 
 .env.local
 
+# Log
+*.log
+logs/
+
+# Node (pakker som ikke skal pushes til git)
+node_modules/
