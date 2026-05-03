@@ -15,13 +15,4 @@ CREATE TABLE pokemon_userchoice (
     UNIQUE (user_id, pokemon_id)
 );
 
-## CREATE TABLE pokemon (
-    id PRIMARY KEY // pokemon Id
-    name
-    weight
-    type
-    description
-    level
-    height
-)
 
