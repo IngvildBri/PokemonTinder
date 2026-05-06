@@ -1,6 +1,7 @@
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import '../App.css';
 
 const Dashboard = () => {
     const {logout, user} = useAuth();
@@ -40,40 +41,47 @@ const Dashboard = () => {
         navigate(`/swipe?region=${region}&type=${type}`);  
     };
 
+    const filteredTypes = types.filter(
+        t => t.name !== "unknown");
+
     return (
-        <div>
-            <h1> Welcome!</h1>
-            <h2>Choose your preferences</h2>
-
-            {/* REGION */}
-            <label>Region:</label>
-            <select value={region} onChange={(e) => setRegion(e.target.value)}>
-                <option value=""> Choose region</option>
-                {regions.map((r) => (
-                    <option key={r.id} value={r.id}>
-                        {r.name}
-                    </option>
-                ))}
-            </select>
-
-            {/* TYPE */}
-            <label>Type:</label>
-            <select value={type} onChange={(e) => setType(e.target.value)}>
-                <option value="">Choose type</option>
-                {types.map((t) => (
-                    <option key={t.name} value={t.name}>
-                        {t.name}
-                    </option>
-                ))}
-            </select>
-            <button onClick={handleStart}>Start swiping</button>
-            <hr/>
-
-            <div>
+        <div className="page-card">
+            
+            <div className="top-buttons">
                 <button onClick={() => navigate("/favorites")}>Favorites</button>
                 <button onClick={logout}>Logout</button>
             </div>
 
+            <h1 className="headline"> WELCOME</h1>
+            
+            <div className="form-group">
+                {/* REGION */}
+                <label>Region</label>
+                <select value={region} onChange={(e) => setRegion(e.target.value)} required className="form-group-text">
+                    <option value="" disabled>Pokémon regions</option>
+                    {regions.map((r) => (
+                        <option key={r.id} value={r.id}>
+                            {r.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="form-group">
+            {/* TYPE */}
+                <label>Type</label>
+                <select value={type} onChange={(e) => setType(e.target.value)} required className="form-group-text">
+                    <option value="" disabled>Pokémon types</option>
+                    {filteredTypes.map((t) => (
+                        <option key={t.name} value={t.name}>
+                            {t.name}
+                        </option>
+                    ))}
+                </select>    
+            </div>
+            
+            <button onClick={handleStart} className="auth-button">Start swiping</button>
+        
         </div>
     );
 

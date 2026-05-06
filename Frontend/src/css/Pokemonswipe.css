@@ -1,0 +1,107 @@
+.swipe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.swipe-card {
+    width: 350px;
+    min-height: 500px;
+    padding: 20px;
+
+    background: #ffcb05;
+    border-radius: 20px;
+    border: 10px solid #2a75bb;
+    box-shadow: 0 0 25px #2a75bb;
+
+    text-align: center;
+    color: black;
+}
+
+.pokemon-image {
+    width: 80%;
+    height: 200px;
+    object-fit: contain;
+    margin: 10px auto;
+    display: block;
+}
+
+.pokemon-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    text-align: left;
+    column-gap: 15px;
+    row-gap: 2px;
+    margin-left: 50px;
+    
+}
+
+.pokemon-stats p {
+    text-align: left;
+    padding-left: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    padding-top: 5px;
+    text-align: left;
+    
+}
+
+.pokemon-joke {
+    font-weight: bold;
+    padding: 18px;
+}
+
+.swipe-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.swipe-buttons button {
+    background: #2a75bb;
+    color: black;
+    padding: 6px 14px;
+    box-shadow: 0 0 25px #2a75bb;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.swipe-buttons button:hover {
+    background: whitesmoke;
+}
+
+.error-message {
+    font-family: 'chewy';
+    font-size: 18px;
+    color: #ffcb05;
+}
+
+.error-message button {
+    font-family: 'chewy';
+    font-size: 20px;
+    border-radius: 7px;
+    border: white;
+    padding: 10px;
+    background-color: #2a75bb;
+    color: #ffcb05;
+    margin-left: 300px;
+    margin-top: 30px;
+
+}
+
+.error-message button:hover {
+    color: black;
+    box-shadow: 0 0 25px #2a75bb;
+}

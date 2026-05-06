@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signup } from "../api/api";
 import { useAuth } from "../context/AuthContext";
+import '../App.css';
 
 const Signupform = () => {
     const {setToken} = useAuth();
@@ -27,33 +28,40 @@ const Signupform = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Sign up</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
+            <h1 className="headline">POKÉMON TINDER</h1>
+            <p className="subheading">Sign up</p>
 
             {error && <p style={{color: "blue"}}>{error}</p>}
 
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
+            <div className="form-group">
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+            </div>
 
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="form-group">
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
 
-            <input  
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="form-group">
+                <input  
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
 
-            <button type="submit">Create account</button>
+            <button type="submit" className="auth-button">Create account</button>
         </form>
     );
 };

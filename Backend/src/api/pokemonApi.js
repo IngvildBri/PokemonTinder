@@ -1,7 +1,6 @@
 // API - kall
 require('dotenv').config();
 
-// const fetch = require('node-fetch');
 const pokemon_URL = "https://pokeapi.co/api/v2";
 
 const { getChuckNorrisJoke } = require('./chucknorrisApi');
@@ -11,6 +10,18 @@ const human_names = [
     "Noah", "Jakob", "Oskar", "Emil", "Simon", "Anders", "Mats", "Adam", "Gabriel", "David", "Patrick", 
     "Kyle", "Matthew", "Ilya", "Casey", "Max", "Marc", "Ryan", "Anthony", "Scott", "Jamie", "Tony", "Sean"
 ];
+
+const regionMap = {
+    "generation-i": "Kanto",
+    "generation-ii": "Johto",
+    "generation-iii": "Hoenn",
+    "generation-iv": "Sinnoh",
+    "generation-v": "Unova",
+    "generation-vi": "Kalos",
+    "generation-vii": "Alola",
+    "generation-viii": "Galar",
+    "generation-ix": "Paldea"
+};
 
 
 const getPokemonByName = async (name) => {
@@ -65,6 +76,7 @@ const getPokemonByRegion = async (region) => {
 const getRandomPokemon = async (region, type) => {
     const regionList = await getPokemonByRegion(region);
     const typeList = await getPokemonByType(type);
+    
 
     const filtered = regionList.filter(name => typeList.includes(name));
 
@@ -75,11 +87,16 @@ const getRandomPokemon = async (region, type) => {
     const pokemon = await getPokemonByName(randomName);
     if (!pokemon) return null;
 
+    const speciesResponse = await fetch(pokemon.species.url)
+    const speciesData = await speciesResponse.json();
+    const generation = speciesData.generation.name;
+    const regionName = regionMap[generation] || "Unknown";
+
+
+
     const humanName = human_names[Math.floor(Math.random() * human_names.length)];
     const primaryType = pokemon.types[0].type.name;
-
     const joke = await getChuckNorrisJoke(primaryType);
-
     const level = Math.floor(Math.random()*100) + 1;
 
     return {
@@ -93,6 +110,7 @@ const getRandomPokemon = async (region, type) => {
         types: pokemon.types.map(t => t.type.name),
         level,
         joke,
+        region: regionName
     };
 };
 

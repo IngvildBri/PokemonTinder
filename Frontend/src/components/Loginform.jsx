@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { login } from "../api/api";
 import { useAuth } from "../context/AuthContext";
+import '../App.css';
 
 const Loginform = () => {
     const {setToken} = useAuth();
@@ -23,24 +24,30 @@ const Loginform = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Login</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
+            <h1 className="headline">POKÉMON TINDER</h1>
+            <p className="subheading">Login</p>
             {error && <p style={{ color: "blue"}}></p>}
 
-            <input
-                type="username"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
+            <div className="form-group">
+                <input
+                    type="username"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+            </div>
 
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit">Login</button>
+            <div className="form-group">
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
+
+            <button type="submit" className="auth-button">Login</button>
         </form>
     );            
 };

@@ -3,6 +3,8 @@ import Homepage from "./pages/Homepage";
 import Dashboard from "./pages/Dashboard";
 import Pokemonswipe from "./pages/Pokemonswipe";
 import Favorites from "./pages/Favorites";
+import './App.css';
+
 
 
 

@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { getFavorites } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import '../App.css';
+import '../css/Favorites.css';
+
 
 const Favorites = () => {
     const {token, logout} = useAuth();
@@ -82,12 +85,11 @@ const Favorites = () => {
     if (error) return <p style={{color: "red"}}>{error}</p>;
 
     return (
-        <div>
-            <h2>Your favorite Pokémons</h2>
+        <div className="favorites-page">
+            <h2 className="headline">Favorite Pokémons</h2>
 
-            <div>
+            <div className="top-buttons">
                 <button onClick={() => navigate("/dashboard")}>Region and type</button>
-                {/*<button onClick={() => navigate("/swipe")}>Swipe</button>*/}
                 <button onClick={logout}>Logout</button>
             </div>
 
@@ -95,7 +97,7 @@ const Favorites = () => {
 
             <div className="favorites-grid">
                 {detailedFavorites.map((p) => (
-                    <div key={p.pokemon_id} className="favorite-card">
+                    <div key={p.pokemon_id} className="pokemon-card">
                         <h3>{p.name}</h3>
                         <img src={p.image}
                             alt={p.name || "pokemon"}
@@ -115,9 +117,3 @@ const Favorites = () => {
 };
 
 export default Favorites;
-
-
-/*<img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.pokemon_id}.png`}
-    alt={p.name || "pokemon"}
-    width="150"
-/>*/
